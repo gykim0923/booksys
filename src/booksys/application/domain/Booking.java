@@ -25,6 +25,9 @@ public interface Booking
   public Time  getTime() ;
   public Table getTable() ;
   public int   getTableNumber() ;
+  public Time  getEditTime();
+  public int   getEditCovers();
+
   
   public String getDetails() ;
   
@@ -33,4 +36,6 @@ public interface Booking
   public void setDate(Date d) ;
   public void setTime(Time t) ;
   public void setTable(Table t) ;
+  public void setEditTime(Time t);
+  public void setEditCovers(int c) ;
 }

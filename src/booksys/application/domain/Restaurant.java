@@ -64,4 +64,11 @@ class Restaurant
   public void removeBooking(Booking b) {
     bm.deleteBooking(b) ;
   }
+  //예약정보수정
+  public void editReservation(Booking b , Time editTime, int editCovers) {
+	   bm.editReservation(b, editTime,editCovers);
+	  
+	  
+  }
+  
 }

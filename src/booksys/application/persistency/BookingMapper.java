@@ -179,4 +179,20 @@ public class BookingMapper
       e.printStackTrace() ;
     }
   }
+  //예약정보수정
+  public void editReservation(Booking b , Time editTime, int editCovers)
+{
+	  PersistentBooking pb = (PersistentBooking) b ;
+	    
+	    StringBuffer sql = new StringBuffer(128) ;
+	    sql.append("UPDATE Reservation SET covers = " + editCovers +  ", time = '" + editTime.toString() //작은따옴표
+	    + "'"+ " WHERE oid = "+pb.getId());
+	    b.setTime(editTime);
+	    b.setCovers(editCovers);
+
+	    performUpdate(sql.toString()) ;
+		
+	   
+} 
+
 }

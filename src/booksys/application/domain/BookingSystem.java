@@ -206,4 +206,15 @@ public class BookingSystem
   {
     return Restaurant.getTableNumbers() ;
   }
+  //예약정보 수정
+  public void editReservation(Time editTime, int editCovers) {
+	  if (!doubleBooked(editTime, selectedBooking.getTableNumber(), null) && !overflow(selectedBooking.getTableNumber(), editCovers)
+			  && selectedBooking != null ) {
+	    restaurant.editReservation(selectedBooking, editTime,editCovers);
+	    
+	      notifyObservers() ;
+	    }
+	  
+	  
+  }
 }

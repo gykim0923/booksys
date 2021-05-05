@@ -17,6 +17,8 @@ public abstract class BookingImp implements Booking
   protected Date  date ;
   protected Time  time ;
   protected Table table ;
+  protected Time editTime;
+  protected int editCovers;
   
   public BookingImp(int c, Date d, Time t, Table tab) {
     covers    = c ;
@@ -57,6 +59,15 @@ public abstract class BookingImp implements Booking
     return table.getNumber() ;
   }
   
+  public Time getEditTime() {
+	    return editTime;
+	  }
+  public int   getEditCovers() {
+	  return editCovers;
+	  
+  }
+   
+  
   public void setArrivalTime(Time t) { }
 
   public void setCovers(int c) {
@@ -73,5 +84,11 @@ public abstract class BookingImp implements Booking
   
   public void setTable(Table t) {
     table = t ;
+  }
+  public void setEditTime(Time t) {
+	  time = t ;
+  }
+  public void setEditCovers(int c) {
+	  covers = c;
   }
 }
