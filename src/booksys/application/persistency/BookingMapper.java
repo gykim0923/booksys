@@ -11,6 +11,7 @@ package booksys.application.persistency ;
 import booksys.application.domain.Booking ;
 import booksys.application.domain.Reservation ;
 import booksys.application.domain.Customer ;
+import booksys.application.domain.Menu;
 import booksys.application.domain.Table ;
 import booksys.storage.* ;
 
@@ -49,13 +50,16 @@ public class BookingMapper
 	Date bdate = rset.getDate(3) ;
 	Time btime = rset.getTime(4) ;
 	int table = rset.getInt(5) ;
-	int cust = rset.getInt(6) ;
-	Time atime = rset.getTime(7) ;
+	int menu = rset.getInt(6) ;
+	int cust = rset.getInt(7) ;
+	Time atime = rset.getTime(8) ;
 	PersistentTable t = TableMapper.getInstance().getTableForOid(table) ;
 	PersistentCustomer c =
 	  CustomerMapper.getInstance().getCustomerForOid(cust) ;
+	PersistentMenu m =
+			  MenuMapper.getInstance().getMenuForOid(menu) ;
 	PersistentReservation r
-	  = new PersistentReservation(oid, covers, bdate, btime, t, c, atime) ;
+	  = new PersistentReservation(oid, covers, bdate, btime, t, m, c, atime) ;
 	v.add(r) ;
       }
       rset.close() ;
@@ -67,9 +71,12 @@ public class BookingMapper
 	Date bdate = rset.getDate(3) ;
 	Time btime = rset.getTime(4) ;
 	int table = rset.getInt(5) ;
+	int menu = rset.getInt(6) ;
 	PersistentTable t = TableMapper.getInstance().getTableForOid(table) ;
+	PersistentMenu m =
+			  MenuMapper.getInstance().getMenuForOid(menu) ;
 	PersistentWalkIn w
-	  = new PersistentWalkIn(oid, covers, bdate, btime, t) ;
+	  = new PersistentWalkIn(oid, covers, bdate, btime, t, m) ;
 	v.add(w) ;
       }
       rset.close() ;
@@ -85,6 +92,7 @@ public class BookingMapper
 						 Date date,
 						 Time time,
 						 Table table,
+						 Menu menu, 
 						 Customer customer,
 						 Time arrivalTime)
   {
@@ -95,6 +103,7 @@ public class BookingMapper
 		  + date + "', '"
 		  + time + "', '"
 		  + ((PersistentTable) table).getId() + "', '"
+		  + ((PersistentMenu) menu).getId() + "', '"
 		  + ((PersistentCustomer) customer).getId() + "', "
 		  + (arrivalTime == null ? "NULL" :
 		     ("'" + arrivalTime.toString() + "'"))
@@ -104,6 +113,7 @@ public class BookingMapper
 				     date,
 				     time,
 				     table,
+				     menu,
 				     customer,
 				     arrivalTime) ;
   } 
@@ -111,7 +121,8 @@ public class BookingMapper
   public PersistentWalkIn createWalkIn(int covers,
 				       Date date,
 				       Time time,
-				       Table table)
+				       Table table, 
+				       Menu menu)
   {
     int oid = Database.getInstance().getId() ;
     performUpdate("INSERT INTO WalkIn " + "VALUES ('"
@@ -119,8 +130,9 @@ public class BookingMapper
 		  + covers + "', '"
 		  + date + "', '"
 		  + time + "', '"
-		  + ((PersistentTable) table).getId() + "')" ) ;
-    return new PersistentWalkIn(oid, covers, date, time, table) ;
+		  + ((PersistentTable) table).getId()
+		  + ((PersistentMenu) menu).getId()+ "')" ) ;
+    return new PersistentWalkIn(oid, covers, date, time, table, menu) ;
   } 
 
   public void updateBooking(Booking b)
@@ -140,6 +152,8 @@ public class BookingMapper
     sql.append(pb.getTime().toString()) ;
     sql.append("', table_id = ") ;
     sql.append(((PersistentTable) pb.getTable()).getId()) ;
+    sql.append("', menu_id = ") ;
+    sql.append(((PersistentMenu) pb.getMenu()).getId()) ;
     if (isReservation) {
       PersistentReservation pr = (PersistentReservation) pb ;
       sql.append(", customer_id = ") ;
@@ -179,13 +193,13 @@ public class BookingMapper
       e.printStackTrace() ;
     }
   }
-  //예약정보수정
+  //�삁�빟�젙蹂댁닔�젙
   public void editReservation(Booking b , Time editTime, int editCovers)
 {
 	  PersistentBooking pb = (PersistentBooking) b ;
 	    
 	    StringBuffer sql = new StringBuffer(128) ;
-	    sql.append("UPDATE Reservation SET covers = " + editCovers +  ", time = '" + editTime.toString() //작은따옴표
+	    sql.append("UPDATE Reservation SET covers = " + editCovers +  ", time = '" + editTime.toString() //�옉���뵲�샂�몴
 	    + "'"+ " WHERE oid = "+pb.getId());
 	    b.setTime(editTime);
 	    b.setCovers(editCovers);

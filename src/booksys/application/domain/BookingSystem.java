@@ -78,20 +78,20 @@ public class BookingSystem
   }
   
   public void makeReservation(int covers, Date date, Time time, int tno,
-			      String name, String phone)
+			      String mname, String name, String phone)
   {
     if (!doubleBooked(time, tno, null) && !overflow(tno, covers)) {
       Booking b
-	    = restaurant.makeReservation(covers, date, time, tno, name, phone) ;
+	    = restaurant.makeReservation(covers, date, time, tno, mname, name, phone) ;
       currentBookings.addElement(b) ;
       notifyObservers() ;
     }
   }
  
-  public void makeWalkIn(int covers, Date date, Time time, int tno)
+  public void makeWalkIn(int covers, Date date, Time time, int tno, String mname)
   {
     if (!doubleBooked(time, tno, null) && !overflow(tno, covers)) {
-      Booking b = restaurant.makeWalkIn(covers, date, time, tno) ;
+      Booking b = restaurant.makeWalkIn(covers, date, time, tno, mname) ;
       currentBookings.addElement(b) ;
       notifyObservers() ;
     }
@@ -206,7 +206,12 @@ public class BookingSystem
   {
     return Restaurant.getTableNumbers() ;
   }
-  //예약정보 수정
+  
+  public static Vector getMenuName()
+  {
+    return Restaurant.getMenuName();
+  }
+  //�삁�빟�젙蹂� �닔�젙
   public void editReservation(Time editTime, int editCovers) {
 	  if (!doubleBooked(editTime, selectedBooking.getTableNumber(), null) && !overflow(selectedBooking.getTableNumber(), editCovers)
 			  && selectedBooking != null ) {

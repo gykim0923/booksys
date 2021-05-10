@@ -15,9 +15,9 @@ class PersistentWalkIn extends WalkIn implements PersistentBooking
   private int oid ;
 
   public PersistentWalkIn(int id, int c, java.sql.Date d,
-			  java.sql.Time t, Table tab)
+			  java.sql.Time t, Table tab, Menu menu)
   {
-    super(c, d, t, tab) ;
+    super(c, d, t, tab, menu) ;
     oid = id ;
   }
 

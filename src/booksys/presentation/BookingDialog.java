@@ -21,9 +21,11 @@ import java.util.Enumeration ;
 abstract class BookingDialog extends Dialog
 {
   protected Choice    tableNumber ;
+  protected Choice    menuName ;
   protected TextField covers ;
   protected TextField time ;
   protected Label     tableNumberLabel ;
+  protected Label     menuNameLabel ;
   protected Label     coversLabel ;
   protected Label     timeLabel ;
   protected boolean   confirmed ;
@@ -58,6 +60,16 @@ abstract class BookingDialog extends Dialog
     if (booking != null) {
       tableNumber.select(Integer.toString(booking.getTable().getNumber())) ;
     }
+    
+    menuNameLabel = new Label("Menu Name:", Label.RIGHT) ;
+    menuName = new Choice() ;
+    Enumeration enums1 = BookingSystem.getMenuName().elements() ;
+    while (enums1.hasMoreElements()) {
+    	menuName.add(((String) enums1.nextElement())) ;
+    }
+    if (booking != null) {
+    	menuName.select(booking.getMenu().getMenuName()) ;
+    }
 
     coversLabel = new Label("Covers:", Label.RIGHT) ;
     covers = new TextField(4) ;
@@ -91,6 +103,11 @@ abstract class BookingDialog extends Dialog
   int getTableNumber()
   {
     return Integer.parseInt(tableNumber.getSelectedItem()) ;
+  }
+  
+  String getMenuName()
+  {
+    return menuName.getSelectedItem() ;
   }
 
   int getCovers()

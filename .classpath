@@ -6,6 +6,6 @@
 		</attributes>
 	</classpathentry>
 	<classpathentry kind="src" path="src"/>
-	<classpathentry kind="lib" path="C:/Users/gykim/OneDrive/바탕 화면/가영/이번학기/소공/booksys/lib/mariadb-java-client-2.6.0.jar"/>
+	<classpathentry kind="lib" path="C:/Users/jeong/Downloads/booksys-master/booksys-master/lib/mariadb-java-client-2.6.0.jar"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>

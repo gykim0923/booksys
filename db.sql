@@ -20,6 +20,11 @@ CREATE TABLE Customer (
        phoneNumber  CHAR(13) NOT NULL
 ) ;
 
+CREATE TABLE Menu (
+       oid	     INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
+       menuName	 VARCHAR(32) NOT NULL
+) ;
+
 CREATE TABLE WalkIn (
        oid	     int NOT NULL PRIMARY KEY,
        covers	 int,
@@ -35,6 +40,7 @@ CREATE TABLE Reservation (
        time	        TIME,
        table_id	    int,
        customer_id  int,
+       menu_id   int,
        arrivalTime  TIME
 ) ;
 

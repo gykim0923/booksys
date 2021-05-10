@@ -16,9 +16,9 @@ class PersistentReservation
   private int oid ;
 
   public PersistentReservation(int id, int c, java.sql.Date d, java.sql.Time t,
-			       Table tab, Customer cust, java.sql.Time arr)
+			       Table tab, Menu menu, Customer cust, java.sql.Time arr)
   {
-    super(c, d, t, tab, cust, arr) ;
+    super(c, d, t, tab, menu, cust, arr) ;
     oid = id ;
   }
 

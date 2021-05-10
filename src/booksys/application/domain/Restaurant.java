@@ -19,6 +19,7 @@ class Restaurant
   BookingMapper  bm = BookingMapper.getInstance() ;
   CustomerMapper cm = CustomerMapper.getInstance() ;
   TableMapper    tm = TableMapper.getInstance() ;
+  MenuMapper	 mm = MenuMapper.getInstance() ;
   
   Vector getBookings(Date date)
   {
@@ -39,21 +40,33 @@ class Restaurant
   {
     return TableMapper.getInstance().getTableNumbers() ;
   }
+  
+  //
+  Menu getMenu(String mname)
+  {
+    return mm.getMenu(mname) ;
+  }
+
+  static Vector getMenuName()
+  {
+    return MenuMapper.getInstance().getMenuName() ;
+  }
 
   public Booking makeReservation(int covers, Date date,
-				     Time time,
-				     int tno, String name, String phone)
+				     Time time, int tno, String mname, String name, String phone)
   {
     Table t = getTable(tno) ;
+    Menu m = getMenu(mname) ;
     Customer c = getCustomer(name, phone) ;
-    return bm.createReservation(covers, date, time, t, c, null) ;
+    return bm.createReservation(covers, date, time, t, m, c, null) ;
   }
 
   public Booking makeWalkIn(int covers, Date date,
-			   Time time, int tno)
+			   Time time, int tno, String mname)
   {
     Table t = getTable(tno) ;
-    return bm.createWalkIn(covers, date, time, t) ;
+    Menu m = getMenu(mname) ;
+    return bm.createWalkIn(covers, date, time, t, m) ;
   }
 
   public void updateBooking(Booking b)
@@ -64,11 +77,10 @@ class Restaurant
   public void removeBooking(Booking b) {
     bm.deleteBooking(b) ;
   }
-  //예약정보수정
+  //�삁�빟�젙蹂댁닔�젙
   public void editReservation(Booking b , Time editTime, int editCovers) {
 	   bm.editReservation(b, editTime,editCovers);
 	  
 	  
   }
-  
 }
