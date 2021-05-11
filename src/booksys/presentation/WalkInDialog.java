@@ -42,4 +42,6 @@ class WalkInDialog extends BookingDialog
 
     pack() ;
   }
+
 }
+
