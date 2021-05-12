@@ -58,7 +58,7 @@ public class MenuMapper {
 	  {
 		PersistentMenu m = getFromCacheByDetails(mname) ;
 	    if (m == null) {
-	      m = getMenu("SELECT * FROM Menu WHERE menuName='" + mname + "'") ;
+	      m = getMenuSQL("SELECT * FROM Menu WHERE menuName=" + mname + "") ; //STACKOVERFLOW 발생,해결
 	      if (m != null) {
 	    	  addToCache(m) ;
 	      }
@@ -70,7 +70,7 @@ public class MenuMapper {
 	  {
 		PersistentMenu m = getFromCache(oid) ;
 	    if (m == null) {
-	      m = getMenu("SELECT * FROM Menu WHERE oid ='" + oid + "'") ;
+	      m = getMenuSQL("SELECT * FROM Menu WHERE oid ='" + oid + "'") ; //변경
 	      if (m != null) {
 	    	  addToCache(m) ;
 	      }

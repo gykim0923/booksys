@@ -71,7 +71,7 @@ public class TableMapper
     if (t == null) {
       t = getTable("SELECT * FROM `Table` WHERE number='" + tno + "'") ;
       if (t != null) {
-	addToCache(t) ;
+    	  addToCache(t) ;
       }
     }
     return t ;
@@ -83,7 +83,7 @@ public class TableMapper
     if (t == null) {
       t = getTable("SELECT * FROM `Table` WHERE oid ='" + oid + "'") ;
       if (t != null) {
-	addToCache(t) ;
+    	  addToCache(t) ;
       }
     }
     return t ;
