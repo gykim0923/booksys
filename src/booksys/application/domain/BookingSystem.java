@@ -82,7 +82,7 @@ public class BookingSystem
   {
     if (!doubleBooked(time, tno, null) && !overflow(tno, covers)) {
       Booking b
-	    = restaurant.makeReservation(covers, date, time, tno, mname, name, phone) ;
+	    = restaurant.makeReservation(covers, date, time, tno, mname, name, phone) ; // data o/x null error
       currentBookings.addElement(b) ;
       notifyObservers() ;
     }
@@ -211,7 +211,7 @@ public class BookingSystem
   {
     return Restaurant.getMenuName();
   }
-  //�삁�빟�젙蹂� �닔�젙
+  //예약정보시스템
   public void editReservation(Time editTime, int editCovers) {
 	  if (!doubleBooked(editTime, selectedBooking.getTableNumber(), null) && !overflow(selectedBooking.getTableNumber(), editCovers)
 			  && selectedBooking != null ) {
@@ -219,7 +219,5 @@ public class BookingSystem
 	    
 	      notifyObservers() ;
 	    }
-	  
-	  
   }
 }

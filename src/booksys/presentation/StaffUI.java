@@ -203,7 +203,7 @@ public class StaffUI extends Canvas implements BookingObserver
 			      "Enter reservation details") ;
     d.show() ;
     if (d.isConfirmed()) {
-      bs.makeReservation(d.getCovers(),
+      bs.makeReservation(d.getCovers(), // data o/x null error
 			 bs.getCurrentDate(),
 			 d.getTime(),
 			 d.getTableNumber(),

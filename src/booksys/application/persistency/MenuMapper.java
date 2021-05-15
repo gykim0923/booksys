@@ -21,10 +21,10 @@ public class MenuMapper {
 		PersistentMenu m = null ;
 	    Enumeration enums = cache.elements() ;
 	    while (m == null & enums.hasMoreElements()) {
-	    	PersistentMenu tmp = (PersistentMenu) enums.nextElement() ;
-	      if (mname.equals(tmp.getMenuName())) {
+	       PersistentMenu tmp = (PersistentMenu) enums.nextElement() ;
+	       if (mname.equals(tmp.getMenuName())) { // data o null error
 	    	  m = tmp ;
-	      }
+	       }
 	    }
 	    return m ;
 	  }
@@ -56,9 +56,9 @@ public class MenuMapper {
 
 	  public PersistentMenu getMenu(String mname)
 	  {
-		PersistentMenu m = getFromCacheByDetails(mname) ;
+		PersistentMenu m = getFromCacheByDetails(mname) ; // data o null error
 	    if (m == null) {
-	      m = getMenuSQL("SELECT * FROM Menu WHERE menuName=" + mname + "") ; //STACKOVERFLOW 발생,해결
+	      m = getMenuSQL("SELECT * FROM Menu WHERE menuName=" + mname + "") ; 
 	      if (m != null) {
 	    	  addToCache(m) ;
 	      }
@@ -70,7 +70,7 @@ public class MenuMapper {
 	  {
 		PersistentMenu m = getFromCache(oid) ;
 	    if (m == null) {
-	      m = getMenuSQL("SELECT * FROM Menu WHERE oid ='" + oid + "'") ; //변경
+	      m = getMenuSQL("SELECT * FROM Menu WHERE oid ='" + oid + "'") ;
 	      if (m != null) {
 	    	  addToCache(m) ;
 	      }

@@ -44,7 +44,7 @@ class Restaurant
   //
   Menu getMenu(String mname)
   {
-    return mm.getMenu(mname) ;
+    return mm.getMenu(mname) ; // data o null error
   }
 
   static Vector getMenuName()
@@ -56,9 +56,9 @@ class Restaurant
 				     Time time, int tno, String mname, String name, String phone)
   {
     Table t = getTable(tno) ;
-    Menu m = getMenu(mname) ;
+    Menu m = getMenu(mname) ; // data o null error
     Customer c = getCustomer(name, phone) ;
-    return bm.createReservation(covers, date, time, t, m, c, null) ;
+    return bm.createReservation(covers, date, time, t, m, c, null) ; // data x null error
   }
 
   public Booking makeWalkIn(int covers, Date date,
@@ -77,10 +77,9 @@ class Restaurant
   public void removeBooking(Booking b) {
     bm.deleteBooking(b) ;
   }
-  //�삁�빟�젙蹂댁닔�젙
+  //예약정보수정
   public void editReservation(Booking b , Time editTime, int editCovers) {
 	   bm.editReservation(b, editTime,editCovers);
-	  
-	  
+	 	  
   }
 }
