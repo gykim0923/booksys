@@ -12,12 +12,18 @@ public class Customer
 {
   private String name ;
   private String phoneNumber ;
-
-  public Customer(String n, String p)
+  private int point;
+  public Customer(String n, String p,int po)
   {
     name = n ;
     phoneNumber = p ;
+    point = po;
+  		
   }
+  public int calcPoint(int price) {
+		point += 500;
+		return price;
+	}
 
   public String getName()
   {
@@ -27,5 +33,9 @@ public class Customer
   public String getPhoneNumber()
   {
     return phoneNumber ;
+  }
+  public int getPoint()
+  {
+    return point ;
   }
 }

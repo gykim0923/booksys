@@ -5,7 +5,6 @@
  * Mark Priestley
  * McGraw-Hill (2004)
  */
-
 package booksys.application.domain ;
 
 import java.sql.Date ;
@@ -22,6 +21,7 @@ public class Reservation extends BookingImp
     customer    = cust ;
     arrivalTime = arr ;
   }
+
 
   public java.sql.Time getArrivalTime() {
     return arrivalTime ;
@@ -55,5 +55,6 @@ public class Reservation extends BookingImp
   public void setCustomer(Customer c) {
     customer = c ;
   }
+ 
 
 }
