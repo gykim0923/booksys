@@ -15,14 +15,14 @@ public class LoginMapper {
 		    ResultSet rset =  pstmt.executeQuery() ;
 		    if(rset.next()) {
 		    	if(rset.getString(1).equals(userPhone))
-		    		return 1; //·Î±×ÀÎ ¼º°ø
+		    		return 1; //ë¡œê·¸ì¸ ì„±ê³µ
 		    	else 
-		    		return 0; //ÀüÈ­¹øÈ£ ºÒÀÏÄ¡
+		    		return 0; //ì „í™”ë²ˆí˜¸ ë¶ˆì¼ì¹˜
 		    }
-		    return -1; //°í°´ ÀÌ¸§ Á¸ÀçÇÏÁö¾ÊÀ½
+		    return -1; //ê³ ê° ì´ë¦„ ì¡´ì¬í•˜ì§€ì•ŠìŒ
 	    } catch (SQLException e) {
 	      e.printStackTrace() ;
 	    }
-	    return -2; //µ¥ÀÌÅÍº£ÀÌ½º¿À·ù
+	    return -2; //ë°ì´í„°ë² ì´ìŠ¤ì˜¤ë¥˜
 	  }
 }
