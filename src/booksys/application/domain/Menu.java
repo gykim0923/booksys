@@ -2,15 +2,15 @@ package booksys.application.domain;
 
 public class Menu {
 	
-	  private String menuName1 ;
+	  private String menuName2 ;
 	  
 	  public Menu (String mn)
 	  {
-	    menuName1 = mn ;
+	    menuName2 = mn ;
 	  }
 
 	  public String getMenuName()
 	  {
-	    return menuName1 ;
+	    return menuName2 ;
 	  }
 }
