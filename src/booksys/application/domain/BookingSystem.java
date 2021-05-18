@@ -87,6 +87,12 @@ public class BookingSystem
       notifyObservers() ;
     }
   }
+  public void makeReservationMenuList(String mname) {
+	  
+
+	  
+	  
+  }
  
   public void makeWalkIn(int covers, Date date, Time time, int tno, String mname)
   {
