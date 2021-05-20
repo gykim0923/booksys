@@ -27,6 +27,7 @@ public interface Booking
   public int   getTableNumber() ;
   public Menu  getMenu() ;
   public String getMenuName() ;
+  public int   getMenuPrice() ;
   public Time  getEditTime();
   public int   getEditCovers();
 

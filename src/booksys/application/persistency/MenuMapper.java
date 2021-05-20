@@ -16,13 +16,13 @@ public class MenuMapper {
 	    return (PersistentMenu) cache.get(key) ;
 	  }
 
-	  private PersistentMenu getFromCacheByDetails(String mname)
+	  private PersistentMenu getFromCacheByDetails(String mname, int mprice)
 	  {
 		PersistentMenu m = null ;
 	    Enumeration enums = cache.elements() ;
 	    while (m == null & enums.hasMoreElements()) {
 	       PersistentMenu tmp = (PersistentMenu) enums.nextElement() ;
-	       if (mname.equals(tmp.getMenuName())) { // data o null error
+	       if (mname.equals(tmp.getMName()) && tmp.getPrice() == mprice) { // data o null error
 	    	  m = tmp ;
 	       }
 	    }
@@ -54,11 +54,11 @@ public class MenuMapper {
 	    return uniqueInstance ;
 	  }
 
-	  public PersistentMenu getMenu(String mname)
+	  public PersistentMenu getMenu(String mn, int mp)
 	  {
-		PersistentMenu m = getFromCacheByDetails(mname) ; // data o null error
+		PersistentMenu m = getFromCacheByDetails(mn, mp) ; // data o null error
 	    if (m == null) {
-	      m = getMenuSQL("SELECT * FROM Menu WHERE menuName=" + mname + "") ; 
+	      m = getMenu("SELECT * FROM Menu WHERE menuName='" + mn + "' AND menuPrice = '" + mp + "'") ; 
 	      if (m != null) {
 	    	  addToCache(m) ;
 	      }
@@ -70,7 +70,7 @@ public class MenuMapper {
 	  {
 		PersistentMenu m = getFromCache(oid) ;
 	    if (m == null) {
-	      m = getMenuSQL("SELECT * FROM Menu WHERE oid ='" + oid + "'") ;
+	      m = getMenu("SELECT * FROM Menu WHERE oid ='" + oid + "'") ;
 	      if (m != null) {
 	    	  addToCache(m) ;
 	      }
@@ -78,7 +78,7 @@ public class MenuMapper {
 	    return m ;
 	  }
 
-	  private PersistentMenu getMenuSQL(String sql)
+	  private PersistentMenu getMenu(String sql)
 	  {
 		PersistentMenu m = null ;
 	    try {
@@ -88,7 +88,8 @@ public class MenuMapper {
 	      while (rset.next()) {
 		int oid    = rset.getInt(1) ;
 		String menuName = rset.getString(2) ;
-		 m = new PersistentMenu(oid, menuName) ;
+		int menuPrice = rset.getInt(3) ;
+		 m = new PersistentMenu(oid, menuName, menuPrice) ;
 	      }
 	      rset.close() ;
 	      stmt.close() ;
@@ -101,14 +102,14 @@ public class MenuMapper {
 
 	  public Vector getMenuName()
 	  {
-	    Vector v = new Vector() ;
+	    Vector v1 = new Vector() ;
 	    try {
 	      Statement stmt
 		= Database.getInstance().getConnection().createStatement() ;
 	      ResultSet rset
 		= stmt.executeQuery("SELECT * FROM Menu ORDER BY oid") ;
 	      while (rset.next()) {
-		v.addElement(new String(rset.getString(2))) ;
+		v1.addElement(new String(rset.getString(2))) ;
 	      }
 	      rset.close() ;
 	      stmt.close() ;
@@ -116,6 +117,26 @@ public class MenuMapper {
 	    catch (SQLException e) {
 	      e.printStackTrace() ;
 	    }
-	    return v ;
-	  }    
+	    return v1 ;
+	  }   
+	  
+	  public Vector getMenuPrice()
+	  {
+	    Vector v2 = new Vector() ;
+	    try {
+	      Statement stmt
+		= Database.getInstance().getConnection().createStatement() ;
+	      ResultSet rset
+		= stmt.executeQuery("SELECT * FROM Menu ORDER BY oid") ;
+	      while (rset.next()) {
+		v2.addElement(new Integer(rset.getInt(3))) ;
+	      }
+	      rset.close() ;
+	      stmt.close() ;
+	    }
+	    catch (SQLException e) {
+	      e.printStackTrace() ;
+	    }
+	    return v2 ;
+	  } 
 }
