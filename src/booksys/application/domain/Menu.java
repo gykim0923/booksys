@@ -1,23 +1,30 @@
 package booksys.application.domain;
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.Iterator;
+import java.awt.List;
+import java.util.*;
+
+
 public class Menu {
 	
 	 private String menuName ;
-	  HashMap<String, Integer> menuInfo = new HashMap<String, Integer>();
+	 private int menuPrice;
+	 /* HashMap<String, Integer> menuInfo = new HashMap<String, Integer>(); */
 	
 	 
-	  public Menu (String mn)
+	  public Menu (String mn, int mp)
 	  {
 	    menuName = mn ;
+	    menuPrice= mp;
 	  }
 
 	  public String getMenuName()
 	  {
 	    return menuName ;
 	  }
-	  public void MenuList() { 
+	  public int getMenuPrice()
+	  {
+	    return menuPrice ;
+	  }
+	 /* public void MenuList() { 
 	  menuInfo.put("불고기피자", 14000);
 
 		menuInfo.put("고르곤졸라", 12000);
@@ -30,23 +37,25 @@ public class Menu {
 
 		
 	  }
-	  Iterator<String> keys = menuInfo.keySet().iterator();
-     
-	  public String chooseMenu(String menuName) { 
-		  while (keys.hasNext()){
-			  String key = keys.next();
-	          if(key.equals(menuName)) { 
-				  return key; } }
-	      }
 	  
-	ArrayList<String> menu= new ArrayList<String>();
+	  Set<String> keySet = menuInfo.keySet();
+	  Iterator<String> keyIterator = keySet.iterator();
+     
+	  public Integer choosenMenuPrice(String menuName) { 
+		  while (keyIterator.hasNext()){
+			  String key = keyIterator.next();
+			  Integer value = menuInfo.get(key);
+	          if(key.equals(menuName)) { 
+				  return value; } }
+		return 0;
+	      }   */
 	
-	for(int i =0; i<menu.size(); i++) {
-		menu.addAll(menu);
-}
-		
+
+	
+	
+	
 
 
 
-}
+
 }

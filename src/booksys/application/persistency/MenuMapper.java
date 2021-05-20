@@ -28,6 +28,18 @@ public class MenuMapper {
 	    }
 	    return m ;
 	  }
+	  private PersistentMenu getFromCacheByPrice(int mprice)
+	  {
+		PersistentMenu m = null ;
+	    Enumeration enums = cache.elements() ;
+	    while (m == null & enums.hasMoreElements()) {
+	    	PersistentMenu tmp = (PersistentMenu) enums.nextElement() ;
+	      if (mprice==tmp.getMenuPrice()) {
+	    	  m = tmp ;
+	      }
+	    }
+	    return m ;
+	  }
 	  
 	  private void addToCache(PersistentMenu m)
 	  {
@@ -58,7 +70,18 @@ public class MenuMapper {
 	  {
 		PersistentMenu m = getFromCacheByDetails(mname) ;
 	    if (m == null) {
-	      m = getMenuSQL("SELECT * FROM Menu WHERE menuName=" + mname + "") ; //STACKOVERFLOW ¹ß»ý,ÇØ°á
+	      m = getMenuSQL("SELECT * FROM Menu WHERE menuName=" + mname + "") ; //STACKOVERFLOW ï¿½ß»ï¿½,ï¿½Ø°ï¿½
+	      if (m != null) {
+	    	  addToCache(m) ;
+	      }
+	    }
+	    return m ;
+	  }
+	  public PersistentMenu getMenuPrice(int mprice)
+	  {
+		PersistentMenu m = getFromCacheByPrice(mprice) ;
+	    if (m == null) {
+	      m = getMenuSQL("SELECT * FROM Menu WHERE menuPrice==" + mprice + "") ; //STACKOVERFLOW ï¿½ß»ï¿½,ï¿½Ø°ï¿½
 	      if (m != null) {
 	    	  addToCache(m) ;
 	      }
@@ -66,11 +89,12 @@ public class MenuMapper {
 	    return m ;
 	  }
 
+
 	  PersistentMenu getMenuForOid(int oid)
 	  {
 		PersistentMenu m = getFromCache(oid) ;
 	    if (m == null) {
-	      m = getMenuSQL("SELECT * FROM Menu WHERE oid ='" + oid + "'") ; //º¯°æ
+	      m = getMenuSQL("SELECT * FROM Menu WHERE oid ='" + oid + "'") ; //ï¿½ï¿½ï¿½ï¿½
 	      if (m != null) {
 	    	  addToCache(m) ;
 	      }
@@ -88,7 +112,8 @@ public class MenuMapper {
 	      while (rset.next()) {
 		int oid    = rset.getInt(1) ;
 		String menuName = rset.getString(2) ;
-		 m = new PersistentMenu(oid, menuName) ;
+		int menuPirce = rset.getInt(3);
+		 m = new PersistentMenu(oid, menuName, menuPirce) ;
 	      }
 	      rset.close() ;
 	      stmt.close() ;
@@ -98,7 +123,7 @@ public class MenuMapper {
 	    }
 	    return m ;
 	  }
-
+	 
 	  public Vector getMenuName()
 	  {
 	    Vector v = new Vector() ;
@@ -118,4 +143,23 @@ public class MenuMapper {
 	    }
 	    return v ;
 	  }    
+	  public Vector getMenuPrice()
+	  {
+	    Vector v = new Vector() ;
+	    try {
+	      Statement stmt
+		= Database.getInstance().getConnection().createStatement() ;
+	      ResultSet rset
+		= stmt.executeQuery("SELECT * FROM Menu ORDER BY oid") ;
+	      while (rset.next()) {
+		v.addElement(new String(rset.getString(2))) ;
+	      }
+	      rset.close() ;
+	      stmt.close() ;
+	    }
+	    catch (SQLException e) {
+	      e.printStackTrace() ;
+	    }
+	    return v ;
+	  } 
 }
