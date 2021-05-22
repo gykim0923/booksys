@@ -81,7 +81,7 @@ public class MenuMapper {
 	  {
 		PersistentMenu m = getFromCacheByPrice(mprice) ;
 	    if (m == null) {
-	      m = getMenuSQL("SELECT * FROM Menu WHERE menuPrice==" + mprice + "") ; //STACKOVERFLOW �߻�,�ذ�
+	      m = getMenuSQL("SELECT * FROM Menu WHERE menuPrice=" + mprice + "") ; //STACKOVERFLOW �߻�,�ذ�
 	      if (m != null) {
 	    	  addToCache(m) ;
 	      }
@@ -126,14 +126,15 @@ public class MenuMapper {
 	 
 	  public Vector getMenuName()
 	  {
-	    Vector v = new Vector() ;
+	    Vector v1 = new Vector() ;
+	    
 	    try {
 	      Statement stmt
 		= Database.getInstance().getConnection().createStatement() ;
 	      ResultSet rset
 		= stmt.executeQuery("SELECT * FROM Menu ORDER BY oid") ;
 	      while (rset.next()) {
-		v.addElement(new String(rset.getString(2))) ;
+		v1.addElement(new String(rset.getString(2))) ;
 	      }
 	      rset.close() ;
 	      stmt.close() ;
@@ -141,18 +142,18 @@ public class MenuMapper {
 	    catch (SQLException e) {
 	      e.printStackTrace() ;
 	    }
-	    return v ;
+	    return v1 ;
 	  }    
 	  public Vector getMenuPrice()
 	  {
-	    Vector v = new Vector() ;
+	    Vector v2 = new Vector() ;
 	    try {
 	      Statement stmt
 		= Database.getInstance().getConnection().createStatement() ;
 	      ResultSet rset
 		= stmt.executeQuery("SELECT * FROM Menu ORDER BY oid") ;
 	      while (rset.next()) {
-		v.addElement(new String(rset.getString(2))) ;
+		v2.addElement(new String(rset.getString(3))) ;
 	      }
 	      rset.close() ;
 	      stmt.close() ;
@@ -160,6 +161,6 @@ public class MenuMapper {
 	    catch (SQLException e) {
 	      e.printStackTrace() ;
 	    }
-	    return v ;
+	    return v2 ;
 	  } 
 }

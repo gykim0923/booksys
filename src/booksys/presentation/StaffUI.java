@@ -208,6 +208,7 @@ public class StaffUI extends Canvas implements BookingObserver
 			 d.getTime(),
 			 d.getTableNumber(),
 			 d.getMenuName(),
+			 d.getMenuPrice(),
 			 d.getCustomerName(),
 			 d.getPhoneNumber()) ;
     }
@@ -224,7 +225,8 @@ public class StaffUI extends Canvas implements BookingObserver
 		    bs.getCurrentDate(),
 		    d.getTime(),
 		    d.getTableNumber(),
-		    d.getMenuName()) ;
+		    d.getMenuName(),
+		    d.getMenuPrice()) ;
     }
   }
   

@@ -42,30 +42,34 @@ class Restaurant
   }
   
   //
-  Menu getMenu(String mname)
+  Menu getMenu(String mname, int mprice)
   {
-    return mm.getMenu(mname) ;
+    return mm.getMenu(mname, mprice) ;
   }
 
   static Vector getMenuName()
   {
     return MenuMapper.getInstance().getMenuName() ;
   }
+  static Vector getMenuPrice()
+  {
+    return MenuMapper.getInstance().getMenuPrice() ;
+  }
 
   public Booking makeReservation(int covers, Date date,
-				     Time time, int tno, String mname, String name, String phone)
+				     Time time, int tno, String mname,int mprice, String name, String phone)
   {
     Table t = getTable(tno) ;
-    Menu m = getMenu(mname) ;
+    Menu m = getMenu(mname, mprice) ;
     Customer c = getCustomer(name, phone) ;
     return bm.createReservation(covers, date, time, t, m, c, null) ;
   }
 
   public Booking makeWalkIn(int covers, Date date,
-			   Time time, int tno, String mname)
+			   Time time, int tno, String mname,int mprice)
   {
     Table t = getTable(tno) ;
-    Menu m = getMenu(mname) ;
+    Menu m = getMenu(mname,mprice) ;
     return bm.createWalkIn(covers, date, time, t, m) ;
   }
 
