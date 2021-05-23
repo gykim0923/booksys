@@ -68,7 +68,7 @@ abstract class BookingDialog extends Dialog
     	menuName.add(((String) enums1.nextElement())) ;
     }
     if (booking != null) {
-    	menuName.select(booking.getMenu().getMenuName()) ;
+    	menuName.select(booking.getMenu().getMName()) ;
     }
 
     coversLabel = new Label("Covers:", Label.RIGHT) ;
@@ -109,7 +109,7 @@ abstract class BookingDialog extends Dialog
   {
     return menuName.getSelectedItem() ;
   }
-
+  
   int getCovers()
   {
     return Integer.parseInt(covers.getText()) ;

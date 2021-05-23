@@ -22,7 +22,8 @@ CREATE TABLE Customer (
 
 CREATE TABLE Menu (
        oid	     INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
-       menuName	 VARCHAR(32) NOT NULL
+       menuName	 VARCHAR(32) NOT NULL,
+       menuPrice INT NOT NULL
 ) ;
 
 CREATE TABLE WalkIn (

@@ -49,7 +49,7 @@ public class Database
 
       ResultSet rset = stmt.executeQuery("SELECT * FROM Oid") ;
       while (rset.next()) {
-	id = rset.getInt(1) ;
+	 id = rset.getInt(1) ;
       }
       rset.close() ;
       

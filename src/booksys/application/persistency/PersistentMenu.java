@@ -5,9 +5,9 @@ import booksys.application.domain.Menu;
 class PersistentMenu extends Menu {
 	private int oid ;
 
-	PersistentMenu(int id, String mn)
+	PersistentMenu(int id, String mn, int mp)
 	{
-	    super(mn) ;
+	    super(mn, mp) ;
 	    oid = id ;
 	 }
 

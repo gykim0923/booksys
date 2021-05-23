@@ -50,7 +50,7 @@ public class BookingSystemApp extends Frame
     MenuItem newReservation = new MenuItem("New Reservation...") ;
     newReservation.addActionListener(new ActionListener() {
 	public void actionPerformed(ActionEvent e) {
-	  ui.addReservation() ;
+	  ui.addReservation() ; // data o/x null error
 	}
       }) ;
     bookingMenu.add(newReservation) ;

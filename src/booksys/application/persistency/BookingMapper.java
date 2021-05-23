@@ -54,10 +54,11 @@ public class BookingMapper
 	int cust = rset.getInt(7) ;
 	Time atime = rset.getTime(8) ;
 	PersistentTable t = TableMapper.getInstance().getTableForOid(table) ;
-	PersistentCustomer c =
-	  CustomerMapper.getInstance().getCustomerForOid(cust) ;
 	PersistentMenu m =
 			  MenuMapper.getInstance().getMenuForOid(menu) ;
+	PersistentCustomer c =
+	  CustomerMapper.getInstance().getCustomerForOid(cust) ;
+	
 	PersistentReservation r
 	  = new PersistentReservation(oid, covers, bdate, btime, t, m, c, atime) ;
 	v.add(r) ;
@@ -103,7 +104,7 @@ public class BookingMapper
 		  + date + "', '"
 		  + time + "', '"
 		  + ((PersistentTable) table).getId() + "', '"
-		  + ((PersistentMenu) menu).getId() + "', '"
+		  + ((PersistentMenu) menu).getId() + "', '" // data x null error
 		  + ((PersistentCustomer) customer).getId() + "', "
 		  + (arrivalTime == null ? "NULL" :
 		     ("'" + arrivalTime.toString() + "'"))
@@ -130,7 +131,7 @@ public class BookingMapper
 		  + covers + "', '"
 		  + date + "', '"
 		  + time + "', '"
-		  + ((PersistentTable) table).getId()
+		  + ((PersistentTable) table).getId()+ "', '"
 		  + ((PersistentMenu) menu).getId()+ "')" ) ;
     return new PersistentWalkIn(oid, covers, date, time, table, menu) ;
   } 
@@ -204,8 +205,7 @@ public class BookingMapper
 	    b.setTime(editTime);
 	    b.setCovers(editCovers);
 
-	    performUpdate(sql.toString()) ;
-		
+	    performUpdate(sql.toString()) ;		
 	   
 } 
 

@@ -43,5 +43,10 @@ class WalkInDialog extends BookingDialog
     pack() ;
   }
 
+public int getMenuPrice() {
+	// TODO Auto-generated method stub
+	return 0;
+}
+
 }
 
