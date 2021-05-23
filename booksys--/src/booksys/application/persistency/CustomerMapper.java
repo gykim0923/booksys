@@ -69,7 +69,7 @@ public class CustomerMapper
     PersistentCustomer c = getFromCacheByDetails(n, p) ;
     if (c == null) {
       c = getCustomer("SELECT * FROM Customer WHERE name = '" + n
-		      + "' AND phoneNumber = '" + p + "'", p, 0) ;
+		      + "' AND phoneNumber = '" + p + "'") ;
       if (c == null) {
 	c = createCustomer(n, p) ;
       }
@@ -82,7 +82,7 @@ public class CustomerMapper
   {
     PersistentCustomer c = getFromCache(oid) ;
     if (c == null) {
-      c = getCustomer("SELECT * FROM Customer WHERE oid ='" + oid + "'", null, oid) ;
+      c = getCustomer("SELECT * FROM Customer WHERE oid ='" + oid + "'") ;
       if (c != null) {
 	addToCache(c) ;
       }
@@ -112,7 +112,7 @@ public class CustomerMapper
     return c ;
   }
 
-  public PersistentCustomer getCustomer(String sql, String phone2, int point)
+  private PersistentCustomer getCustomer(String sql)
   {
     PersistentCustomer c = null ;
     try {

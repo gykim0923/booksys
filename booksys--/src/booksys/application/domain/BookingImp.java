@@ -66,7 +66,11 @@ public Time getArrivalTime() {
   }
 
   public String getMenuName() {
-    return menu.getMenuName();
+	  return menu.getMenuName();
+  }
+
+  public int getMenuPrice() {
+    return menu.getMenuPrice() ; 
   }
   
   public Time getEditTime() {

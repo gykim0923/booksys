@@ -1,0 +1,4 @@
+eclipse.preferences.version=1
+encoding//src/booksys/application/domain/BookingSystem.java=UTF-8
+encoding//src/booksys/application/persistency/BookingMapper.java=UTF-8
+encoding/db.sql=UTF-8

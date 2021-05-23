@@ -12,7 +12,6 @@ import booksys.application.persistency.* ;
 
 import java.sql.Date ;
 import java.sql.Time ;
-import java.util.ArrayList;
 import java.util.Vector ;
 
 class Restaurant
@@ -27,9 +26,9 @@ class Restaurant
     return bm.getBookings(date) ;
   }
 
-  Customer getCustomer(String name, String phone, int point)
+  Customer getCustomer(String name, String phone)
   {
-    return cm.getCustomer(name, phone, point) ;
+    return cm.getCustomer(name, phone) ;
   }
   
   Table getTable(int n)
@@ -43,41 +42,34 @@ class Restaurant
   }
   
   //
-  Menu getMenu(String mname)
+  Menu getMenu(String mname, int mprice)
   {
-    return mm.getMenu(mname) ;
+    return mm.getMenu(mname, mprice) ;
   }
 
   static Vector getMenuName()
   {
     return MenuMapper.getInstance().getMenuName() ;
   }
+  static Vector getMenuPrice()
+  {
+    return MenuMapper.getInstance().getMenuPrice() ;
+  }
 
   public Booking makeReservation(int covers, Date date,
-				     Time time, int tno, String mname, String name, String phone, int point)
+				     Time time, int tno, String mname,int mprice, String name, String phone)
   {
-	    ArrayList CustomerList = new ArrayList();   //CustomerList를만들고
-	    ArrayList CustomerList2 = new ArrayList();   //CustomerList를만들고
-	    Table t = getTable(tno) ;
-	    Menu m = getMenu(mname) ;
-	    Customer c = getCustomer(name, phone, point) ;
-		CustomerList.add(c);
-		CustomerList2.add(c);//새로운 c라는 customer객체가 만들어질대마다 그것은 CustomerList에 추가
+    Table t = getTable(tno) ;
+    Menu m = getMenu(mname, mprice) ;
+    Customer c = getCustomer(name, phone) ;
     return bm.createReservation(covers, date, time, t, m, c, null) ;
-
-	for (int i = CustomerList.size()-2; i>=0; i--) {
-		if(Customer.get(i).name.equals(name)) {
-			Customer.CustomerList = CustomerList2.get(i).point; // customer에 point변수가 필요
-				break;
-		} else continue;
-	}
   }
 
   public Booking makeWalkIn(int covers, Date date,
-			   Time time, int tno, String mname)
+			   Time time, int tno, String mname,int mprice)
   {
     Table t = getTable(tno) ;
-    Menu m = getMenu(mname) ;
+    Menu m = getMenu(mname,mprice) ;
     return bm.createWalkIn(covers, date, time, t, m) ;
   }
 
@@ -89,7 +81,7 @@ class Restaurant
   public void removeBooking(Booking b) {
     bm.deleteBooking(b) ;
   }
-  //占쎌굙占쎈튋占쎌젟癰귣똻�땾占쎌젟
+  //�삁�빟�젙蹂댁닔�젙
   public void editReservation(Booking b , Time editTime, int editCovers) {
 	   bm.editReservation(b, editTime,editCovers);
 	  

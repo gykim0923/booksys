@@ -82,8 +82,11 @@ class ReservationDialog extends BookingDialog
     return phone.getText() ;
   }
 
-public String getMenuName() {
+ String getMenuName() {
 	// TODO Auto-generated method stub
 	return null;
 }
+  int getMenuPrice() {
+		return 0;
+	}
 }

@@ -12,13 +12,11 @@ public class Customer
 {
   private String name ;
   private String phoneNumber ;
-  private int point ;
 
-  public Customer(String n, String p, int pt)
+  public Customer(String n, String p)
   {
     name = n ;
     phoneNumber = p ;
-    point = pt;
   }
 
   public String getName()
@@ -30,10 +28,4 @@ public class Customer
   {
     return phoneNumber ;
   }
-  
-  public int getPoint()
-  {
-    return point ;
-  }
-  
 }
