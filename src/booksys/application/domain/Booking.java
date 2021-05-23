@@ -30,7 +30,7 @@ public interface Booking
   public int   getMenuPrice() ;
   public Time  getEditTime();
   public int   getEditCovers();
-
+  public int   getTotalSales();
   
   public String getDetails() ;
   
@@ -43,4 +43,5 @@ public interface Booking
   
   public void setEditTime(Time t);
   public void setEditCovers(int c) ;
+  public void setTotalSales();
 }

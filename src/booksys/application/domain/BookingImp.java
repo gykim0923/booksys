@@ -20,6 +20,7 @@ public abstract class BookingImp implements Booking
   protected Menu menu ;
   protected Time editTime;
   protected int editCovers;
+  protected int sales;
   
   public BookingImp(int c, Date d, Time t, Table tab, Menu m) {
     covers    = c ;
@@ -72,6 +73,9 @@ public Time getArrivalTime() {
   public int getMenuPrice() {
     return menu.getMenuPrice() ; 
   }
+  public int getTotalSales() {
+	    return sales; 
+	  }
   
   public Time getEditTime() {
 	    return editTime;
@@ -108,5 +112,8 @@ public Time getArrivalTime() {
   }
   public void setEditCovers(int c) {
 	  covers = c;
+  }
+  public void setTotalSales(int s) {
+	  sales =s;
   }
 }

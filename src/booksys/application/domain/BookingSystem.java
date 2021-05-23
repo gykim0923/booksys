@@ -24,6 +24,7 @@ public class BookingSystem
   Restaurant restaurant = null ;
   Vector currentBookings ;
   Booking selectedBooking ;
+  Manager manager;
 
   // Singleton:
   
@@ -46,6 +47,7 @@ public class BookingSystem
   // Observer: this is `Subject/ConcreteSubject'
 
   Vector observers = new Vector() ;
+public int totalSale;//총매출
 
   public void addObserver(BookingObserver o)
   {
@@ -85,6 +87,8 @@ public class BookingSystem
 	    = restaurant.makeReservation(covers, date, time, tno, mname, mprice, name, phone) ;
       currentBookings.addElement(b) ;
       notifyObservers() ;
+      manager.getTotalSales(mprice);
+      manager.getBestMenu(mname);
     }
   }
  
@@ -94,6 +98,8 @@ public class BookingSystem
       Booking b = restaurant.makeWalkIn(covers, date, time, tno, mname, mprice) ;
       currentBookings.addElement(b) ;
       notifyObservers() ;
+      manager.getTotalSales(mprice);
+      manager.getBestMenu(mname);
     }
   }
   
@@ -221,5 +227,8 @@ public class BookingSystem
 	    }
 	  
 	  
+  }
+  public static int getTotalSale() {
+	  return Manager.getTotalSales();
   }
 }
