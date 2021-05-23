@@ -211,6 +211,12 @@ public class BookingSystem
   {
     return Restaurant.getMenuName();
   }
+  
+  public static Vector getMenuPrice()
+  {
+    return Restaurant.getMenuPrice();
+  }
+  
   //예약정보시스템
   public void editReservation(Time editTime, int editCovers) {
 	  if (!doubleBooked(editTime, selectedBooking.getTableNumber(), null) && !overflow(selectedBooking.getTableNumber(), editCovers)
