@@ -12,6 +12,7 @@ import booksys.application.persistency.* ;
 
 import java.sql.Date ;
 import java.sql.Time ;
+import java.util.ArrayList;
 import java.util.Vector ;
 
 class Restaurant
@@ -64,8 +65,26 @@ class Restaurant
     Customer c = getCustomer(name, phone) ;
     return bm.createReservation(covers, date, time, t, m, c, null) ;
   }
+  
+  public void point(String name, String phone, int point)
+  {
+	    ArrayList CustomerList1 = new ArrayList();   
+	    ArrayList CustomerList2 = new ArrayList();   
+	    Customer c = new Customer(phone, phone, point);
+		CustomerList1.add(c);
+		CustomerList2.add(c);
 
-  public Booking makeWalkIn(int covers, Date date,
+	for (int i = CustomerList1.size()-2; i>=0; i--) {
+		if(Customer.get(1).name.equals(name)) {
+			c.point = c.point + 100; 
+				break;
+		} else continue;
+	}
+	  
+ }
+
+
+public Booking makeWalkIn(int covers, Date date,
 			   Time time, int tno, String mname,int mprice)
   {
     Table t = getTable(tno) ;
@@ -81,7 +100,7 @@ class Restaurant
   public void removeBooking(Booking b) {
     bm.deleteBooking(b) ;
   }
-  //�삁�빟�젙蹂댁닔�젙
+  //占쎌굙占쎈튋占쎌젟癰귣똻�땾占쎌젟
   public void editReservation(Booking b , Time editTime, int editCovers) {
 	   bm.editReservation(b, editTime,editCovers);
 	  
