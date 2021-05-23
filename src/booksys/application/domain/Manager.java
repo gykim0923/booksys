@@ -19,6 +19,12 @@ public class Manager {
 	    menuName = mn ;
 	    
 	  }
+	 /*public void showSales() {
+		 for (int i = 0; i < mCount.length; i++) {
+			 
+		 }
+		 
+	 }*/
 	 public String getBestMenu(String mn)
 	  {
 	    switch (mn) {
@@ -54,8 +60,9 @@ public class Manager {
 	    	return "로제파스타";
 		case 3: 
 	    	return "토마토파스타";
-		case 4: 
+	    default: 
 	    	return "크림파스타";
+	    	
 	    
 	    }
 
